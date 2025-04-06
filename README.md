@@ -37,6 +37,8 @@ If its not the supposed utility at fault, please try some troubleshooting steps.
 ## Developers & Credits
 [QP-Offcial](https://github.com/QP-Offcial) - Lead maintainer of the project - scriptsqp on Discord
 <br/>
+[7GrandDad](https://github.com/7GrandDadPGN) - Maintainer of the original (now discontinued) VapeV4ForRoblox project - vaperoblox on Discord
+<br/>
 [jhki](https://github.com/jhki0) - Developer of the project - 59it on Discord
 <br/>
 [xsinew](https://github.com/xsinew) - Developer of the project - xsinew on Discord
