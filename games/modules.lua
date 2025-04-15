@@ -426,44 +426,38 @@ run(function()
         Name = "InfiniteJump",
         Function = function(callback)
             if callback then
-                local UserInputService = game:GetService("UserInputService")
-                local player = playersService.LocalPlayer
-                local function setupInfiniteJump()
-                    local character = player.Character or player.CharacterAdded:Wait()
-                    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-                    InfiniteJump:Clean(UserInputService.InputBegan:Connect(function(input, gameProcessed)
-                        if gameProcessed then return end
-                        if input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode == Enum.KeyCode.Space then
-                            while UserInputService:IsKeyDown(Enum.KeyCode.Space) do
-                                humanoidRootPart.Velocity = Vector3.new(humanoidRootPart.Velocity.X, Velocity.Value, humanoidRootPart.Velocity.Z)
-                                wait()
-                            end
-                        end
-                    end))
-					if UserInputService.TouchEnabled then
-						local Jumping = false
-						local JumpButton: ImageButton = lplr.PlayerGui:WaitForChild("TouchGui"):WaitForChild("TouchControlFrame"):WaitForChild("JumpButton")
-						
-						InfiniteJump:Clean(JumpButton.MouseButton1Down:Connect(function()
-							Jumping = true
-						end))
-
-						InfiniteJump:Clean(JumpButton.MouseButton1Up:Connect(function()
-							Jumping = false
-						end))
-
-						InfiniteJump:Clean(runService.RenderStepped:Connect(function()
-							if Jumping then
-								humanoidRootPart.Velocity = Vector3.new(humanoidRootPart.Velocity.X, Velocity.Value, humanoidRootPart.Velocity.Z)
+				InfiniteJump:Clean(inputService.InputBegan:Connect(function(input, gameProcessed)
+					if gameProcessed then return end
+					if input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode == Enum.KeyCode.Space then
+						while inputService:IsKeyDown(Enum.KeyCode.Space) do
+							local PrimaryPart = lplr.Character.PrimaryPart
+							if entitylib.isAlive and PrimaryPart then
+								PrimaryPart.Velocity = vector.create(PrimaryPart.Velocity.X, Velocity.Value, PrimaryPart.Velocity.Z)
 							end
-						end))
+							wait()
+						end
 					end
-                end
-                player.CharacterAdded:Connect(setupInfiniteJump)
-                if player.Character then
-                    setupInfiniteJump()
-                end
-            end
+				end))
+				if inputService.TouchEnabled then
+					local Jumping = false
+					local JumpButton = lplr.PlayerGui:WaitForChild("TouchGui"):WaitForChild("TouchControlFrame"):WaitForChild("JumpButton")
+					
+					InfiniteJump:Clean(JumpButton.MouseButton1Down:Connect(function()
+						Jumping = true
+					end))
+
+					InfiniteJump:Clean(JumpButton.MouseButton1Up:Connect(function()
+						Jumping = false
+					end))
+
+					InfiniteJump:Clean(runService.RenderStepped:Connect(function()
+						if Jumping and entitylib.isAlive then
+							local PrimaryPart = lplr.Character.PrimaryPart
+							PrimaryPart.Velocity = vector.create(PrimaryPart.Velocity.X, Velocity.Value, PrimaryPart.Velocity.Z)
+						end
+					end))
+				end
+			end
         end,
         Tooltip = "Allows infinite jumping"
     })
