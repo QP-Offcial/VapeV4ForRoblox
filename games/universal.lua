@@ -4848,7 +4848,8 @@ run(function()
 			local nametag = Instance.new('TextLabel')
 			nametag.TextSize = 14 * Scale.Value
 			nametag.FontFace = FontOption.Value
-			addCorner(nametag,UDim.new(0.4,0))
+			addCorner(nametag)
+			addBlur(nametag)
 			local ize = getfontsize(removeTags(Strings[ent]), nametag.TextSize, nametag.FontFace, Vector2.new(100000, 100000))
 			nametag.Name = ent.Player and ent.Player.Name or ent.Character.Name
 			nametag.Size = UDim2.fromOffset(ize.X + 8, ize.Y + 7)
