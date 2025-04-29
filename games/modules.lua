@@ -133,7 +133,6 @@ do
 	end
 end
 
-
 local XStore = {
 	bedtable = {},
 	Tweening = false,
