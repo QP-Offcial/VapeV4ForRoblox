@@ -3,7 +3,7 @@
 repeat task.wait() until game:IsLoaded()
 if shared.vape then shared.vape:Uninject() end
 if not shared.VapeDeveloper then
-	pcall(setclipboard, "discord.gg/qpvxpe")
+	pcall(setclipboard, "https://discord.gg/U3fZacBApD")
 end
 -- why do exploits fail to implement anything correctly? Is it really that hard?
 if identifyexecutor then
