@@ -1,3 +1,4 @@
+--This watermark is used to delete the file if its cached, remove it to make the file persist after vape updates.
 local run = function(func) func() end
 local cloneref = cloneref or function(obj) return obj end
 
@@ -16,6 +17,12 @@ local bd = {}
 local store = {
 	blocks = {},
 	serverBlocks = {}
+}
+local BridgeDuel = {
+	Blink = require(replicatedStorage.Blink.Client),
+	Entity = require(replicatedStorage.Modules.Entity),
+	BlockPlacementController = require(lplr.PlayerScripts.Controllers.All.BlockPlacementController),
+	EffectsController = require(lplr.PlayerScripts.Controllers.All.EffectsController),
 }
 
 local function getTool()
@@ -43,10 +50,11 @@ local function parsePositions(v, func)
 end
 
 run(function()
+	task.wait(1)
 	local Knit = require(replicatedStorage.Modules.Knit.Client)
-	if not debug.getupvalue(Knit.Start, 1) then
-		repeat task.wait() until debug.getupvalue(Knit.Start, 1)
-	end
+	-- if not debug.getupvalue(Knit.Start, 1) then
+	-- 	repeat task.wait() until debug.getupvalue(Knit.Start, 1)
+	-- end
 
 	bd = setmetatable({
 		Blink = require(replicatedStorage.Blink.Client),
@@ -341,11 +349,11 @@ run(function()
 									AttackDelay = tick() + (1 / CPS.GetRandomValue())
 									local bdent = bd.Entity.FindByCharacter(v.Character)
 									if bdent then
-										--[[bd.Call(bd.Blink.item_action.attack_entity.fire, {
+										BridgeDuel.Blink.item_action.attack_entity.fire({
 											target_entity_id = bdent.Id,
 											is_crit = entitylib.character.RootPart.AssemblyLinearVelocity.Y < 0,
 											weapon_name = tool.Name
-										}, bd.AttackArgs)]]
+										})
 									end
 								end
 							end
