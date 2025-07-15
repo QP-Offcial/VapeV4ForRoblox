@@ -39,7 +39,7 @@ If its not the supposed utility at fault, please try some troubleshooting steps.
 <br/>
 [jhki](https://github.com/jhki0) - Developer of the project - 59it on Discord
 <br/>
-[xsinew](https://github.com/xsinew) - Developer of the project - xsinew on Discord
+[xsinew](https://github.com/xsinew) - Developer of the project - .dayun. on Discord
 <br/>
 [rce-incorporated](https://github.com/rce-incorporated/Fiu) - Luau bytecode disassembly with modifications
 <br/>
